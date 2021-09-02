@@ -6,6 +6,7 @@ import Home from "./Components/Home";
 import Checkout from "./Components/Checkout";
 import Nav from "./Components/Nav";
 import Login from "./Components/Login";
+import PrivateRoute from "./Components/Private";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
     <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/product/:productId" component={ProductDetails} />
-    <Route path="/chechout" component={Checkout} />
+    <PrivateRoute path="/checkout" component={Checkout} />
     <Route path ="/login" component={Login} />
     </Switch>
     </Router>

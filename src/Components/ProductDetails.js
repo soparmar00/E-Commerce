@@ -2,13 +2,18 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProDetail} from "../Thunk/thunk"
+import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { addToCart } from "../redux/Action/action";
 
 const ProductDetails = () => {
 
   const { productId } = useParams();
+  const history = useHistory()
 
-  const result = useSelector((state) => state.Product);
-  console.log(result)
+  const result = useSelector((state) => state.Select);
+
+  const userId = useSelector((state) => state.Product.token)
 
   const { image, title, price, category, description } = result;
   const dispatch = useDispatch();
@@ -16,6 +21,20 @@ const ProductDetails = () => {
   useEffect(() => {
     dispatch(fetchProDetail(productId))
 }, [dispatch]);
+
+const handleCart = (result) => {
+  if(userId){
+    dispatch(addToCart(result))
+  }
+  else{
+    history.push('/login')
+  }
+}
+
+const handleBuy = (result) => {
+    handleCart(result)
+    history.push('/checkout')
+}
 
   return (
    <div>
@@ -26,6 +45,15 @@ const ProductDetails = () => {
     <div>
     <center>
     <div><img src={image} width="200" height="300" /></div>
+    <div>
+    <span>
+    <br /> 
+    <Button variant="primary" type="submit" onClick={() => handleCart(result)}> Add to cart</Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <Button variant="secondary" type="submit" onClick={() => handleBuy(result)}> Buy now</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <br />
+    <br />
+    </span>
+    </div>
     <div >
     <h2>{title}</h2>
     <h3>${price}</h3>

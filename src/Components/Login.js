@@ -11,8 +11,8 @@ function Login() {
     const [show, setShow] = useState(false);
     const [log, setLog] = useState(false)
 
-    const [sigup, setSigup] = useState({ name: '', city: '', email: '', password: '' })
-    const [login, setLogin] = useState({ email: '', password: '' })
+    const [sigup, setSigup] = useState({ username: '', email: '', password: '' })
+    const [login, setLogin] = useState({ username: '', password: '' })
 
     const history = useHistory()
 
@@ -56,18 +56,17 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(sigup.name, sigup.city, sigup.email, sigup.password)
+        console.log(sigup.username, sigup.email, sigup.password)
         dispatch(signUpUser(sigup))
         handleClose()
-
     }
 
     const handleLoginSubmit = (e) => {
         e.preventDefault()
-        console.log(login.email, login.password)
+        console.log(login.username, login.password)
         dispatch(loginUser(login))
         handlelogClose()
-        history.push('/dashboard')
+        history.push('/')
     }
 
     return (
@@ -81,13 +80,8 @@ function Login() {
 
     <Form onSubmit={handleSubmit} >
     <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Name</Form.Label>
-    <Form.Control type="text" name="name" placeholder="Enter name" onChange={handleChange} />
-    </Form.Group>
-
-    <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>City</Form.Label>
-    <Form.Control type="text" name="city" placeholder="Enter city" onChange={handleChange} />
+    <Form.Label>Username</Form.Label>
+    <Form.Control type="text" name="username" placeholder="Enter username" onChange={handleChange} />
     </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -119,8 +113,8 @@ function Login() {
 
     <Form onSubmit={handleLoginSubmit}>
     <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" name="email" placeholder="Enter email" onChange={handlelogChange} />
+    <Form.Label>Username</Form.Label>
+    <Form.Control type="text" name="username" placeholder="Enter username" onChange={handlelogChange} />
     </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicPassword">

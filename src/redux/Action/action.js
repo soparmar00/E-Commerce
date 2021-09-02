@@ -4,7 +4,8 @@ export const LOGOUT = "LOGOUT";
 export const SHOW_PRODUCT = "SHOW_PRODUCT";
 export const SELECTE_PRODUCT = "SELECTE_PRODUCT";
 export const PRO_FILTER = "PRO_FILTER";
-export const GET_CETEGORY = "GET_CETEGORY"
+export const GET_CART_ITEM = "GET_CART_ITEM";
+export const ADD_TO_CART = "ADD_TO_CART"
 
 
 export const signUp = (payload) => ({
@@ -12,8 +13,15 @@ export const signUp = (payload) => ({
     payload,
 })
 
-export const login = (payload) => ({
-    type: LOGIN,
+export const login = (payload) => {
+    return{
+        type: LOGIN,
+        payload,
+    }
+}
+
+export const logout = (payload) => ({
+    type: LOGOUT,
     payload,
 })
 
@@ -32,5 +40,12 @@ export const proFilter = (payload) => ({
     payload
 })
 
+export const getCartItem = (payload) => ({
+    type: GET_CART_ITEM,
+    payload
+})
 
-
+export const addToCart = (data) => ({
+    type: ADD_TO_CART,
+    payload: data
+})

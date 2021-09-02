@@ -2,22 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, filterProduct } from "../Thunk/thunk";
 import { Link } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+
 
 const Home = () => {
 
   const dispatch = useDispatch();
   const result = useSelector((state) => state.Product.fetchProduct);
-  
-  const cat = null
-
   const [filter, setFilter] = useState({limit: '', sort: '', categ:''})
 
   useEffect(() => {
     dispatch(fetchProducts())
   }, [dispatch]);
 
-  
+
   const handleChange = (e) => {
       const {name, value} = e.target;
       setFilter({...filter, [name]: value})
@@ -25,7 +22,7 @@ const Home = () => {
 
   const handleFilterSubmit = (e) => {
       e.preventDefault()
-      console.log(filter.limit, filter.sort)
+      console.log(filter.limit, filter.sort, filter.categ)
       dispatch(filterProduct(filter))
   }
 
@@ -34,12 +31,14 @@ const Home = () => {
 
   return (
     <div className="four column wide" key={id}>
-    <Link to={`/product/${id}`}>
+    
     <div className="ui link cards">
     <div className="card">
+    <Link to={`/product/${id}`}>
     <div >
     <img src={image} alt={title} width="150" height="200"/>
     </div>
+    </Link>
     <div className="content">
     <div className="header">{title}</div>
     <div className="meta price">$ {price}</div>
@@ -47,7 +46,6 @@ const Home = () => {
     </div>  
     </div>
     </div>
-    </Link>
     </div>
   );
   });
@@ -65,7 +63,10 @@ const Home = () => {
     </select>&nbsp;&nbsp;&nbsp;&nbsp;
 
     <select name='categ'  onChange={handleChange}>
-    {cat = result.map((procat) => <option value={procat.category}>Category</option>)}
+    <option value="men's clothing">Men's clothing</option>
+    <option value="jewelery">Jewelery</option>
+    <option value="electronics">Electronics</option>
+    <option value="women's clothing">Women's clothing</option>
     </select>&nbsp;&nbsp;&nbsp;&nbsp;
 
     <button type="submit">Apply Filter</button>
