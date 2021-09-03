@@ -1,15 +1,18 @@
 import React  from 'react'
 import { useSelector } from 'react-redux'
 
+
 const Checkout = () => {
 
     const cart = useSelector((state) => state.Product.cart)
     console.log(cart)
 
-
     return (
+    <div> {cart.length===0? (
     <div>
-    {cart.length>0?(
+    <h1>No Product in Cart</h1>
+    </div>): 
+    (
     <div>
     <h2>Checkout</h2>
     {cart.map((cartItem,i) => 
@@ -22,10 +25,7 @@ const Checkout = () => {
     </div>
     )}
     </div>
-    ):(
-    <div>
-    <h1>No Product in Cart</h1>
-    </div>)}
+    )}
    </div>
     )
 }

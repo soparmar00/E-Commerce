@@ -12,10 +12,10 @@ const ProductDetails = () => {
   const history = useHistory()
 
   const result = useSelector((state) => state.Select);
-
   const userId = useSelector((state) => state.Product.token)
 
   const { image, title, price, category, description } = result;
+  
   const dispatch = useDispatch();
 
   useEffect(() => {

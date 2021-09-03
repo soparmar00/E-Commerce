@@ -56,14 +56,12 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(sigup.username, sigup.email, sigup.password)
         dispatch(signUpUser(sigup))
         handleClose()
     }
 
     const handleLoginSubmit = (e) => {
         e.preventDefault()
-        console.log(login.username, login.password)
         dispatch(loginUser(login))
         handlelogClose()
         history.push('/')
