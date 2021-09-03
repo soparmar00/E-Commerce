@@ -39,25 +39,6 @@ export const filterProduct = (state) => async (dispatch) => {
     }
 }
 
-export const addCart = (state) => async (dispatch) => {
-    console.log(state)
-    try{
-        
-        const response = await proRequest.post('/carts', {
-         body:JSON.stringify(
-            {
-                userId: state.userId,
-                product: [state.result]
-            }
-        )
-        })
-        dispatch(addToCart(response.data))
-    }
-    catch (err) {
-        console.log(err)
-    }
-}
-
 export const signUpUser = (state) => async (dispatch) => {
     console.log(state)
     try {
