@@ -14,7 +14,7 @@ const Home = () => {
     dispatch(fetchProducts())
   }, [dispatch]);
 
-
+  
   const handleChange = (e) => {
       const {name, value} = e.target;
       setFilter({...filter, [name]: value})
@@ -22,7 +22,6 @@ const Home = () => {
 
   const handleFilterSubmit = (e) => {
       e.preventDefault()
-      console.log(filter.limit, filter.sort, filter.categ)
       dispatch(filterProduct(filter))
   }
 
@@ -38,7 +37,7 @@ const Home = () => {
     <div >
     <img src={image} alt={title} width="150" height="200"/>
     </div>
-    </Link>
+     </Link>
     <div className="content">
     <div className="header">{title}</div>
     <div className="meta price">$ {price}</div>
@@ -46,6 +45,7 @@ const Home = () => {
     </div>  
     </div>
     </div>
+   
     </div>
   );
   });
@@ -58,8 +58,8 @@ const Home = () => {
     <input type='number' name='limit' placeholder='Enter limit' onChange={handleChange} />&nbsp;&nbsp;&nbsp;&nbsp;
 
     <select name='sort'  onChange={handleChange}>
-    <option value="asce">Asce</option>
-    <option value="desc">Desc</option>
+    <option value="asce">Ascending</option>
+    <option value="desc">Descending</option>
     </select>&nbsp;&nbsp;&nbsp;&nbsp;
 
     <select name='categ'  onChange={handleChange}>

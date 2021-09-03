@@ -5,7 +5,8 @@ export const SHOW_PRODUCT = "SHOW_PRODUCT";
 export const SELECTE_PRODUCT = "SELECTE_PRODUCT";
 export const PRO_FILTER = "PRO_FILTER";
 export const GET_CART_ITEM = "GET_CART_ITEM";
-export const ADD_TO_CART = "ADD_TO_CART"
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REDIRECT = "REDIRECT";
 
 
 export const signUp = (payload) => ({
@@ -45,7 +46,12 @@ export const getCartItem = (payload) => ({
     payload
 })
 
-export const addToCart = (data) => ({
+export const addToCart = (payload) => ({
     type: ADD_TO_CART,
-    payload: data
+    payload
+})
+
+export const redirect = (payload) => ({
+    type: REDIRECT,
+    payload
 })

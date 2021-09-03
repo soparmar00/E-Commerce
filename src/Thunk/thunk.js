@@ -28,7 +28,6 @@ export const fetchProDetail = (id) =>  async (dispatch) => {
 }
 
 export const filterProduct = (state) => async (dispatch) => {
-    console.log(state)
     try{
         const {limit, sort, categ} = state
         const response = await proRequest.get(`/products/category/${categ}?limit=${limit}&sort=${sort}`)
@@ -39,8 +38,8 @@ export const filterProduct = (state) => async (dispatch) => {
     }
 }
 
+
 export const signUpUser = (state) => async (dispatch) => {
-    console.log(state)
     try {
         const response = await proRequest.post('/users', state)
         dispatch(signUp(response.data))
@@ -51,7 +50,6 @@ export const signUpUser = (state) => async (dispatch) => {
 }
 
 export const loginUser = (state) => async (dispatch) => {
-    console.log(state)
     try {
         const response = await proRequest.post('/auth/login', state);
         localStorage.setItem("token", response.data.token)

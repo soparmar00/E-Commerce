@@ -1,10 +1,11 @@
-import {SHOW_PRODUCT,SELECTE_PRODUCT, PRO_FILTER, ADD_TO_CART, LOGIN, SIGN_UP} from "../Action/action"
+import {SHOW_PRODUCT,SELECTE_PRODUCT, PRO_FILTER, ADD_TO_CART, LOGIN, SIGN_UP, REDIRECT} from "../Action/action"
 
 const intialState = {
   fetchProduct: [],
   cart: [],
   user: {},
   token: localStorage.getItem('token'),
+  redi: {},
 };
 
 export const Product = (state = intialState,action) =>  {
@@ -37,13 +38,20 @@ export const Product = (state = intialState,action) =>  {
     case ADD_TO_CART:
       return{
         ...state,
-        cart: [...state.cart, action.payload]
+        cart: action.payload
+      }
+
+    case REDIRECT:
+      return{
+        ...state,
+        redi: action.payload
       }
 
     default:
       return state;
   }
 };
+
 
 export const SelecteProduct = (state = {},action) => {
   switch (action.type) {
@@ -53,4 +61,5 @@ export const SelecteProduct = (state = {},action) => {
       return state;
   }
 };
+
 

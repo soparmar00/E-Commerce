@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Modal, Form, Button } from 'react-bootstrap';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { loginUser, signUpUser } from '../Thunk/thunk';
 
@@ -13,6 +13,8 @@ function Login() {
 
     const [sigup, setSigup] = useState({ username: '', email: '', password: '' })
     const [login, setLogin] = useState({ username: '', password: '' })
+
+    const redirect = useSelector(state => state.Product.redi)
 
     const history = useHistory()
 
@@ -56,15 +58,17 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(sigup.username, sigup.email, sigup.password)
         dispatch(signUpUser(sigup))
         handleClose()
     }
 
     const handleLoginSubmit = (e) => {
         e.preventDefault()
+        console.log(login.username, login.password)
         dispatch(loginUser(login))
         handlelogClose()
-        history.push('/')
+        history.push(`/product/:${redirect}`)
     }
 
     return (

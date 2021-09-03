@@ -4,18 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProDetail} from "../Thunk/thunk"
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { addToCart } from "../redux/Action/action";
+import { addToCart, redirect } from "../redux/Action/action";
 
 const ProductDetails = () => {
 
   const { productId } = useParams();
   const history = useHistory()
-
   const result = useSelector((state) => state.Select);
   const userId = useSelector((state) => state.Product.token)
 
   const { image, title, price, category, description } = result;
-  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,11 +21,13 @@ const ProductDetails = () => {
 }, [dispatch]);
 
 const handleCart = (result) => {
+  console.log(result)
   if(userId){
     dispatch(addToCart(result))
   }
   else{
     history.push('/login')
+    dispatch(redirect(productId))
   }
 }
 
