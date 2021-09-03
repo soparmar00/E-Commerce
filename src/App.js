@@ -15,7 +15,7 @@ function App() {
     < Nav />
     <Switch>
     <Route path="/" exact component={Home} />
-    <Route path="/product/:productId" component={ProductDetails} />
+    <Route path="/product/:id" component={ProductDetails} />
     <PrivateRoute path="/checkout" component={Checkout} />
     <Route path ="/login" component={Login} />
     </Switch>

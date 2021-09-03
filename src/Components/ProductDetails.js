@@ -8,7 +8,7 @@ import { addToCart, redirect } from "../redux/Action/action";
 
 const ProductDetails = () => {
 
-  const { productId } = useParams();
+  const { id } = useParams();
   const history = useHistory()
   const result = useSelector((state) => state.Select);
   const userId = useSelector((state) => state.Product.token)
@@ -17,7 +17,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProDetail(productId))
+    dispatch(fetchProDetail(id))
 }, [dispatch]);
 
 const handleCart = (result) => {
@@ -27,7 +27,7 @@ const handleCart = (result) => {
   }
   else{
     history.push('/login')
-    dispatch(redirect(productId))
+    dispatch(redirect(id))
   }
 }
 
